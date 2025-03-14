@@ -19,20 +19,22 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.9'
-        cache: 'pip' # caching pip dependencies
-    - run: |
+        cache: 'pip'
+    - name: Install dependencies
+      run: |
         pip install -r requirements.txt
 
-    # Run tests (Placeholder for actual tests)
+    # Run tests (replace with actual test command if applicable)
     - name: Run tests
       run: |
-        echo "Run tests"
+        echo "Run tests"  # Replace with 'pytest' or similar
 
     # Azure Login using GitHub Secrets
     - name: Azure Login
       uses: azure/login@v2.2.0
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        subscription-id: ${{ secrets.SUBSCRIPTION_ID }}  # Optional
 
     # Execute the Update Script on the VM
     - name: Deploy to Azure VM
